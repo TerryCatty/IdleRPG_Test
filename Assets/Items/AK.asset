@@ -9,16 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65580e687ba8f3e4fae3cc00d25d6113, type: 3}
-  m_Name: Ammo 9x18
+  m_Script: {fileID: 11500000, guid: fe617f877ba3c4d42a8cf97be4b321bd, type: 3}
+  m_Name: AK
   m_EditorClassIdentifier: 
-  imageItem: {fileID: 7958656093370690196, guid: c5789581d5765d44f8ec25fdd4114ea3, type: 3}
-  nameItem: Ammo 9x18 mm
-  item_id: _ammo9x18
-  maxStack: 50
-  weight: 0.01
-  typesCell: 02000000
+  imageItem: {fileID: 0}
+  nameItem: AK-47
+  item_id: _ak47
+  maxStack: 1
+  weight: 5
+  typesCell: 0300000002000000
   infoParameters:
   - {fileID: -2722031457582756120, guid: 97297720f50dd0d40b22debf56a06725, type: 3}
-  actionButtons:
-  - {fileID: 3026645081576624935, guid: 578ae11f34b1548498c006191fe3f2ed, type: 3}
+  actionButtons: []
+  damage: 9
+  ammo: {fileID: 11400000, guid: d0719c61ebbee294d90913e1d243f94c, type: 2}

@@ -11,6 +11,8 @@ public class ItemData : ScriptableObject
     public int maxStack;
     public float weight;
 
+    public List<TypeCell> typesCell;
+
     public List<InfoParameter> infoParameters;
     public List<ItemButton> actionButtons;
 }

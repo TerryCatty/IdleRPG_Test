@@ -17,6 +17,7 @@ MonoBehaviour:
   item_id: _millitary_helmet
   maxStack: 1
   weight: 1
+  typesCell: 0000000002000000
   infoParameters:
   - {fileID: 220389483333391121, guid: 3b7d173b2d0237d448877505bf0e5e98, type: 3}
   - {fileID: -2722031457582756120, guid: 97297720f50dd0d40b22debf56a06725, type: 3}

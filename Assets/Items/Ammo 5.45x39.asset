@@ -17,6 +17,7 @@ MonoBehaviour:
   item_id: _ammo5.45x39
   maxStack: 100
   weight: 0.03
+  typesCell: 02000000
   infoParameters:
   - {fileID: -2722031457582756120, guid: 97297720f50dd0d40b22debf56a06725, type: 3}
   actionButtons:

@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using static UnityEditor.Progress;
 
 
 public class CellUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerMoveHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
@@ -26,7 +27,9 @@ public class CellUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
 
     public virtual void SetCell(Cell cell)
     {
-        this.cell = cell;
+        this.cell.item = cell.item;
+        this.cell.count = cell.count;
+
         UpdateText();
         UpdateImage();
     }
@@ -39,6 +42,7 @@ public class CellUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
     public virtual void SetIndex(int value)
     {
         index = value;
+        cell.index = index;
     }
 
     public void UpdateText()
@@ -66,7 +70,7 @@ public class CellUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
         if (cell.count <= 0) return;
 
         inventoryUI.OpenPanel(this);
-        inventoryUI.StopDrag();
+        DragDrop.instance.StopDrag();
     }
 
     public void HideItem(bool value)
@@ -86,6 +90,20 @@ public class CellUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
     public virtual bool TryGetNewItem(Cell cell)
     {
         bool result = true;
+
+        if(cell.item != null)
+        {
+
+            if (cell.item.typesCell.Contains(this.cell.typeCell) == false)
+            {
+                Debug.Log(cell.item.typesCell);
+                Debug.Log(this.cell.typeCell);
+
+                result = false;
+            }
+
+        }
+
         return result;
     }
 
@@ -97,16 +115,18 @@ public class CellUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
     public void OnPointerUp(PointerEventData eventData)
     {
         HideItem(false);
-        inventoryUI.TryPutItemInCell(this);
-        inventoryUI.StopDrag();
+        DragDrop.instance.TryPutCell();
+        DragDrop.instance.StopDrag();
         canDrag = false;
     }
 
     public void OnPointerMove(PointerEventData eventData)
     {
-        if (canDrag && inventoryUI.getDrag == false) 
-        { 
-            inventoryUI.StartDrag(index);
+        if (canDrag && DragDrop.instance.getDrag == false)
+        {
+            DragDrop.instance.SetStartInventory(inventoryUI.getInventory);
+            DragDrop.instance.SetStartCell(index);
+            DragDrop.instance.StartDrag(index);
             HideItem(true);
         }
     }
@@ -118,9 +138,10 @@ public class CellUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(inventoryUI.getDrag)
+        if(DragDrop.instance.getDrag)
         {
-            inventoryUI.SetPutCell(index);
+            DragDrop.instance.SetPutInventory(inventoryUI.getInventory);
+            DragDrop.instance.SetPutCell(index);
             enterDrag = true;
         }
     }
@@ -129,6 +150,6 @@ public class CellUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
     {
         enterDrag = false;
 
-        inventoryUI.SetPutCell(-1);
+        DragDrop.instance.SetPutCell(-1);
     }
 }

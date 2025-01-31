@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -5,7 +6,11 @@ public class WearItem : ItemButton
 {
     private InventoryUI inventoryUI;
 
+    private PlayerInventory playerInventory;
+    private InventoryArmor inventoryArmor;
+
     [SerializeField] private TextMeshProUGUI textButton;
+    private Cell putCell = null;
     private CellUI cellUI = null;
 
     private bool isWeared = false;
@@ -14,6 +19,10 @@ public class WearItem : ItemButton
     {
         base.SetCell(cell);
         inventoryUI = cell.getInventoryUI;
+        cellUI = cell;
+
+        playerInventory = FindAnyObjectByType<PlayerInventory>();
+        inventoryArmor = FindAnyObjectByType<InventoryArmor>();
 
         CheckArmor();
     }
@@ -25,15 +34,13 @@ public class WearItem : ItemButton
 
     private void CheckArmor()
     {
-
-        foreach (ArmorCellUI cell in inventoryUI.getCellsArmor)
+        foreach(Cell cell in inventoryArmor.getCells)
         {
-            ItemArmor item = this.cell.getCell.item as ItemArmor;
-            if (cell.armorType == item.armorType)
-            {
-                cellUI = cell;
+            ItemData item = cell.item;
 
-                if (cell == this.cell)
+            if (cellUI.getCell.item.typesCell.Contains(cell.typeCell))
+            {
+                if (item == cellUI.getCell.item)
                 {
                     textButton.text = "Снять";
                     isWeared = true;
@@ -53,27 +60,74 @@ public class WearItem : ItemButton
     {
         if (isWeared)
         {
-            cellUI = null;
-            CheckFreeCell();
+            putCell = CheckFreeCell(playerInventory);
+
+            if (putCell != null)
+            {
+                Debug.Log(isWeared);
+
+                DragDrop.instance.SetPutInventory(playerInventory);
+                DragDrop.instance.SetPutCell(putCell.index);
+            }
+        }
+        else
+        {
+            putCell = CheckArmorCell(inventoryArmor);
+
+            DragDrop.instance.SetPutInventory(inventoryArmor);
+            DragDrop.instance.SetPutCell(putCell.index);
         }
 
+        DragDrop.instance.SetStartInventory(inventoryUI.getInventory);
+        DragDrop.instance.SetStartCell(cell.getIndex);
 
-        if (cellUI == null) return;
+        if (putCell == null)
+        {
+            DragDrop.instance.ResetData();
+            return;
+        }
 
-        inventoryUI.SetPutCell(cell.getIndex);
-        inventoryUI.TryPutItemInCell(cellUI);
+        DragDrop.instance.TryPutCell();
         inventoryUI.CloseInfoPanel();
     }
 
-    private void CheckFreeCell()
+    private Cell CheckFreeCell(EntityInventory inventory)
     {
-        foreach (CellUI cell in inventoryUI.getCells)
+        Cell returnCell = new Cell();
+
+        Debug.Log("Invenoty count: " + inventory.getCells.Count);
+
+        foreach (Cell cell in inventory.getCells)
         {
-            if (cell.getCell.isTake == false)
+            Debug.Log(cell.count);
+            Debug.Log(cell.index);
+            if (cell.isTake == false)
             {
-                cellUI = cell;
+                returnCell = cell;
                 break;
             }
         }
+
+        return returnCell;
+    }
+
+
+    private Cell CheckArmorCell(EntityInventory inventory)
+    {
+        Cell returnCell = new Cell();
+
+        Debug.Log("Armor count: " + inventory.getCells.Count);
+        foreach (Cell cell in inventory.getCells)
+        {
+            Debug.Log(cell.count);
+            Debug.Log(cell.index);
+            if (cellUI.getCell.item.typesCell.Contains(cell.typeCell))
+            {
+                returnCell = cell;
+                break;
+            }
+        }
+
+        return returnCell;
     }
 }

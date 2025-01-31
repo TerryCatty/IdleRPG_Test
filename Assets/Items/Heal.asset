@@ -17,7 +17,10 @@ MonoBehaviour:
   item_id: _medkit
   maxStack: 6
   weight: 1
+  typesCell: 02000000
   infoParameters:
   - {fileID: -2722031457582756120, guid: 97297720f50dd0d40b22debf56a06725, type: 3}
-  actionButtons: []
+  actionButtons:
+  - {fileID: 567235967406773523, guid: 6869f0f851dc9164e816c5c2896f0cb6, type: 3}
+  - {fileID: 3026645081576624935, guid: 578ae11f34b1548498c006191fe3f2ed, type: 3}
   countHeal: 50

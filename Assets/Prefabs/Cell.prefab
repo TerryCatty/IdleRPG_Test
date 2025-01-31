@@ -91,8 +91,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cell:
-  - count: 0
+    count: 0
     item: {fileID: 0}
+    typeCell: 2
   image: {fileID: 9101365776343977373}
   textCell: {fileID: 5818067996796384490}
 --- !u!1 &7177517812903425228

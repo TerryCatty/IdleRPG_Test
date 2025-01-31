@@ -4,6 +4,6 @@ using UnityEngine;
 public class ItemArmor : ItemData
 {
     public int protect;
-    public TypeArmor armorType;
+    public BodyPart armorType;
 }
 
