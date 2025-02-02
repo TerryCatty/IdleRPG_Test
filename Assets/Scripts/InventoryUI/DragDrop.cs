@@ -68,8 +68,10 @@ public class DragDrop : MonoBehaviour
 
         Cell oldCell = new Cell();
         Cell newCell = new Cell();
+
         oldCell.item = startInventory.getCells[indexStartCell].item;
         oldCell.count = startInventory.getCells[indexStartCell].count;
+
         newCell.item = putInventory.getInventoryUI.getCells[indexPutCell].getCell.item;
         newCell.count = putInventory.getInventoryUI.getCells[indexPutCell].getCell.count;
 

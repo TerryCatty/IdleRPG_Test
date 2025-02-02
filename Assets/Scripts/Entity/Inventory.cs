@@ -21,13 +21,22 @@ public abstract class EntityInventory : MonoBehaviour, EntityPart
         cells[index].item = cell.item;
         cells[index].count = cell.count;
 
-        if(cells[index].count <= 0) DeleteItem(index);
+
+        if (cells[index].count <= 0)
+        {
+            DeleteItem(index);
+            return;
+        }
+
+        inventoryUI?.SetCell(index, cells[index]);
     }
 
 
     public virtual void DeleteItem(int indexCell)
     {
-        cells[indexCell] = new Cell();
+        cells[indexCell].item = null;
+        cells[indexCell].count = 0;
+        inventoryUI?.SetCell(indexCell, cells[indexCell]);
     }
 }
 

@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe617f877ba3c4d42a8cf97be4b321bd, type: 3}
-  m_Name: AK
+  m_Name: Makarov
   m_EditorClassIdentifier: 
-  imageItem: {fileID: 8271715202566429118, guid: 667a62ae46de99948822cbff09f1344e, type: 3}
-  nameItem: AK-47
-  item_id: _ak47
+  imageItem: {fileID: -4436948075455868981, guid: becb2519947ed4248adb643156fd4ab5, type: 3}
+  nameItem: Makarov
+  item_id: _makarov
   maxStack: 1
   weight: 5
   typesCell: 0300000002000000
   infoParameters:
   - {fileID: -2722031457582756120, guid: 97297720f50dd0d40b22debf56a06725, type: 3}
   actionButtons: []
-  damage: 9
-  ammo: {fileID: 11400000, guid: d0719c61ebbee294d90913e1d243f94c, type: 2}
+  damage: 5
+  ammo: {fileID: 11400000, guid: f19d00ee9c6b5a24b803d5fe4706f80c, type: 2}
   prefabWeapon: {fileID: 322982726357413628, guid: ed6dfeba45707af44a8735b5c1c1c436, type: 3}

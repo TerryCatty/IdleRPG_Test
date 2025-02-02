@@ -36,6 +36,7 @@ public class InventoryUI : MonoBehaviour
 
     public void SetCell(int index, Cell cell)
     {
+        Debug.Log(cell.count);
         cells[index].SetCell(cell);
     }
 

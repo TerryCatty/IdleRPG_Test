@@ -2,7 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using static UnityEditor.Progress;
 
 
 public class CellUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerMoveHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
@@ -34,7 +33,7 @@ public class CellUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
         UpdateImage();
     }
 
-    public void SetInventoryUI(InventoryUI inventory)
+    public virtual void SetInventoryUI(InventoryUI inventory)
     {
         inventoryUI = inventory;
     }
@@ -47,6 +46,8 @@ public class CellUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
 
     public void UpdateText()
     {
+        if (textCell == null) return;
+
         if (cell.count <= 1) textCell.text = "";
         else textCell.text = cell.count.ToString();
     }
@@ -78,7 +79,7 @@ public class CellUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
         isHiden = !value;
 
         image.gameObject.SetActive(isHiden);
-        textCell.gameObject.SetActive(isHiden);
+        textCell?.gameObject.SetActive(isHiden);
 
     }
 
@@ -131,7 +132,7 @@ public class CellUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
         OpenInfo();
     }

@@ -26,8 +26,4 @@ public class InventoryArmor : EntityInventory
 
         inventoryUI?.SetCell(index, cell);
     }
-    public override void DeleteItem(int indexCell)
-    {
-        cells[indexCell] = new Cell();
-    }
 }

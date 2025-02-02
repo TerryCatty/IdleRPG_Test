@@ -5,21 +5,21 @@ public class EntityAttack : MonoBehaviour, EntityPart
 {
     [SerializeField] protected Entity targetAttack;
     [SerializeField] protected BodyPart attackPart;
-    [SerializeField] protected List<Weapon> weaponList = new List<Weapon>();
-    protected Weapon choosedWeapon;
+
+    protected WeaponInventory _weaponInventory;
     public void Init()
     {
-       if(weaponList.Count > 0) choosedWeapon = weaponList[0];
+        _weaponInventory = GetComponent<WeaponInventory>();
     }
 
 
     public void Attack()
     {
-        if (targetAttack == null || choosedWeapon == null || weaponList.Count == 0) return;
+        if (targetAttack == null || _weaponInventory?.choosedWeapon == null) return;
 
         if(targetAttack.TryGetComponent(out EntityHealth entityHealth))
         {
-            entityHealth.GetDamage(choosedWeapon.getWeapon.damage, attackPart);
+            entityHealth.GetDamage(_weaponInventory.choosedWeapon.getWeapon.damage, attackPart);
         }
     }
 }

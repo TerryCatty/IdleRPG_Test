@@ -5,4 +5,5 @@ public class ItemWeapon : ItemData
 {
     public int damage;
     public ItemData ammo;
+    public Weapon prefabWeapon;
 }

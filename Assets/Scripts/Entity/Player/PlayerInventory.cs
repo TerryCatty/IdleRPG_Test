@@ -27,7 +27,7 @@ public class PlayerInventory : Inventory
     public override void SetCell(int index, Cell cell)
     {
         base.SetCell(index, cell);
-        inventoryUI?.SetCell(index, cell);
+
     }
 
 
@@ -48,7 +48,5 @@ public class PlayerInventory : Inventory
     public override void DeleteItem(int indexCell)
     {
         base.DeleteItem(indexCell);
-
-        inventoryUI?.SetCell(indexCell, cells[indexCell]);
     }
 }

@@ -6,8 +6,8 @@ public class Weapon : MonoBehaviour
 
     public ItemWeapon getWeapon => weapon;
 
-    public void Init()
+    public void SetWeapon(ItemWeapon item)
     {
-
+        weapon = item;
     }
 }
